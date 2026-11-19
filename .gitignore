@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+build/
+coverage/
+.npm-cache/
+.env*
+!.env.example
