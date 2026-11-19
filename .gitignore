@@ -4,5 +4,6 @@ out/
 build/
 coverage/
 .npm-cache/
+*.tsbuildinfo
 .env*
 !.env.example

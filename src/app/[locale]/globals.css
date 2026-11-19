@@ -1,9 +1,230 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
+
 @custom-variant dark (&:is(.dark *));
 
-:root { --background: oklch(0.99 0.004 260); --foreground: oklch(0.19 0.02 260); --card: oklch(1 0 0); --card-foreground: oklch(0.19 0.02 260); --popover: oklch(1 0 0); --popover-foreground: oklch(0.19 0.02 260); --primary: oklch(0.51 0.18 258); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.95 0.01 260); --secondary-foreground: oklch(0.25 0.02 260); --muted: oklch(0.95 0.01 260); --muted-foreground: oklch(0.53 0.02 260); --accent: oklch(0.94 0.03 250); --accent-foreground: oklch(0.25 0.02 260); --destructive: oklch(0.58 0.23 27); --border: oklch(0.9 0.01 260); --input: oklch(0.9 0.01 260); --ring: oklch(0.63 0.15 258); --radius: 0.75rem; --font-sans: var(--font-manrope); }
-.dark { --background: oklch(0.16 0.02 260); --foreground: oklch(0.97 0.005 260); --card: oklch(0.2 0.02 260); --card-foreground: oklch(0.97 0.005 260); --popover: oklch(0.2 0.02 260); --popover-foreground: oklch(0.97 0.005 260); --primary: oklch(0.7 0.13 258); --primary-foreground: oklch(0.16 0.02 260); --secondary: oklch(0.27 0.02 260); --secondary-foreground: oklch(0.97 0.005 260); --muted: oklch(0.27 0.02 260); --muted-foreground: oklch(0.7 0.02 260); --accent: oklch(0.29 0.03 258); --accent-foreground: oklch(0.97 0.005 260); --destructive: oklch(0.7 0.19 22); --border: oklch(1 0 0 / 12%); --input: oklch(1 0 0 / 16%); --ring: oklch(0.55 0.04 260); }
-@theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground); --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground); --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground); --color-destructive: var(--destructive); --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring); --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px); --font-sans: var(--font-manrope); }
-* { border-color: var(--border); }
-body { font-family: var(--font-manrope), sans-serif; }
+:root {
+  color-scheme: light;
+
+  /* Grey palette */
+  --palette-grey-light: #e8e8e8;
+  --palette-grey-light-hover: #dcdcdc;
+  --palette-grey-light-active: #b7b6b7;
+  --palette-grey-normal: #161518;
+  --palette-grey-normal-hover: #141316;
+  --palette-grey-normal-active: #121113;
+  --palette-grey-dark: #111012;
+  --palette-grey-dark-hover: #0d0d0e;
+  --palette-grey-dark-active: #0a090b;
+  --palette-grey-darker: #080708;
+
+  /* Red palette */
+  --palette-red-light: #f7e9ea;
+  --palette-red-light-hover: #f4dedf;
+  --palette-red-light-active: #e7babd;
+  --palette-red-normal: #b3222a;
+  --palette-red-normal-hover: #a11216;
+  --palette-red-normal-active: #8f1b22;
+  --palette-red-dark: #861a20;
+  --palette-red-dark-hover: #6b1419;
+  --palette-red-dark-active: #510f13;
+  --palette-red-darker: #3f0c0f;
+
+  /* White palette */
+  --palette-white-light: #ffffff;
+  --palette-white-light-hover: #ffffff;
+  --palette-white-light-active: #ffffff;
+  --palette-white-normal: #ffffff;
+  --palette-white-normal-hover: #e6e6e6;
+  --palette-white-normal-active: #cccccc;
+  --palette-white-dark: #bfbfbf;
+  --palette-white-dark-hover: #999999;
+  --palette-white-dark-active: #737373;
+  --palette-white-darker: #595959;
+
+  /* Semantic light theme */
+  --background: var(--palette-white-normal);
+  --foreground: var(--palette-grey-normal);
+  --card: var(--palette-white-normal);
+  --card-foreground: var(--palette-grey-normal);
+  --popover: var(--palette-white-normal);
+  --popover-foreground: var(--palette-grey-normal);
+  --primary: var(--palette-red-normal);
+  --primary-hover: var(--palette-red-normal-hover);
+  --primary-active: var(--palette-red-normal-active);
+  --primary-foreground: var(--palette-white-normal);
+  --secondary: var(--palette-grey-light);
+  --secondary-hover: var(--palette-grey-light-hover);
+  --secondary-active: var(--palette-grey-light-active);
+  --secondary-foreground: var(--palette-grey-normal);
+  --muted: var(--palette-grey-light);
+  --muted-foreground: var(--palette-white-darker);
+  --accent: var(--palette-red-light);
+  --accent-hover: var(--palette-red-light-hover);
+  --accent-active: var(--palette-red-light-active);
+  --accent-foreground: var(--palette-grey-normal);
+  --destructive: var(--palette-red-normal);
+  --border: var(--palette-grey-light-hover);
+  --input: var(--palette-grey-light-hover);
+  --ring: var(--palette-red-normal);
+  --radius: 0.75rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: var(--palette-grey-dark);
+  --foreground: var(--palette-white-light);
+  --card: var(--palette-grey-normal);
+  --card-foreground: var(--palette-white-light);
+  --popover: var(--palette-grey-normal);
+  --popover-foreground: var(--palette-white-light);
+  --primary: var(--palette-red-dark);
+  --primary-hover: var(--palette-red-dark-hover);
+  --primary-active: var(--palette-red-dark-active);
+  --primary-foreground: var(--palette-white-light);
+  --secondary: var(--palette-grey-normal);
+  --secondary-hover: var(--palette-grey-normal-hover);
+  --secondary-active: var(--palette-grey-normal-active);
+  --secondary-foreground: var(--palette-white-light);
+  --muted: var(--palette-grey-normal);
+  --muted-foreground: var(--palette-white-dark);
+  --accent: var(--palette-red-darker);
+  --accent-hover: var(--palette-red-dark-hover);
+  --accent-active: var(--palette-red-dark-active);
+  --accent-foreground: var(--palette-white-light);
+  --destructive: var(--palette-red-dark);
+  --border: rgb(255 255 255 / 12%);
+  --input: rgb(255 255 255 / 16%);
+  --ring: var(--palette-red-dark);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-active: var(--secondary-active);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-palette-grey-light: var(--palette-grey-light);
+  --color-palette-grey-light-hover: var(--palette-grey-light-hover);
+  --color-palette-grey-light-active: var(--palette-grey-light-active);
+  --color-palette-grey-normal: var(--palette-grey-normal);
+  --color-palette-grey-normal-hover: var(--palette-grey-normal-hover);
+  --color-palette-grey-normal-active: var(--palette-grey-normal-active);
+  --color-palette-grey-dark: var(--palette-grey-dark);
+  --color-palette-grey-dark-hover: var(--palette-grey-dark-hover);
+  --color-palette-grey-dark-active: var(--palette-grey-dark-active);
+  --color-palette-grey-darker: var(--palette-grey-darker);
+
+  --color-palette-red-light: var(--palette-red-light);
+  --color-palette-red-light-hover: var(--palette-red-light-hover);
+  --color-palette-red-light-active: var(--palette-red-light-active);
+  --color-palette-red-normal: var(--palette-red-normal);
+  --color-palette-red-normal-hover: var(--palette-red-normal-hover);
+  --color-palette-red-normal-active: var(--palette-red-normal-active);
+  --color-palette-red-dark: var(--palette-red-dark);
+  --color-palette-red-dark-hover: var(--palette-red-dark-hover);
+  --color-palette-red-dark-active: var(--palette-red-dark-active);
+  --color-palette-red-darker: var(--palette-red-darker);
+
+  --color-palette-white-light: var(--palette-white-light);
+  --color-palette-white-light-hover: var(--palette-white-light-hover);
+  --color-palette-white-light-active: var(--palette-white-light-active);
+  --color-palette-white-normal: var(--palette-white-normal);
+  --color-palette-white-normal-hover: var(--palette-white-normal-hover);
+  --color-palette-white-normal-active: var(--palette-white-normal-active);
+  --color-palette-white-dark: var(--palette-white-dark);
+  --color-palette-white-dark-hover: var(--palette-white-dark-hover);
+  --color-palette-white-dark-active: var(--palette-white-dark-active);
+  --color-palette-white-darker: var(--palette-white-darker);
+
+  --font-sans: "Inter Variable", sans-serif;
+  --font-heading: "Manrope Variable", sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Inter Variable", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Manrope Variable", sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+}
